@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>한국고대금석문 탐색기</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">국사편찬위원회 한국사데이터베이스 XML 기반</p>
+      <h1>한국고대금석문 탐색기</h1>
+    </div>
+    <div class="header-actions">
+      <button id="resetButton" class="icon-button" type="button" title="필터 초기화" aria-label="필터 초기화">↺</button>
+      <button id="themeButton" class="icon-button" type="button" title="화면 색상 전환" aria-label="화면 색상 전환">◐</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="stats-grid" aria-label="자료 요약">
+        <div>
+          <span id="totalCount">0</span>
+          <small>금석문</small>
+        </div>
+        <div>
+          <span id="eraCount">0</span>
+          <small>분류</small>
+        </div>
+        <div>
+          <span id="imageCount">0</span>
+          <small>이미지 메타</small>
+        </div>
+      </section>
+
+      <section class="filters" aria-label="검색 필터">
+        <label class="search-box">
+          <span>검색</span>
+          <input id="searchInput" type="search" placeholder="이름, 한자, 장소, 본문 검색">
+        </label>
+
+        <label>
+          <span>시대</span>
+          <select id="eraFilter"></select>
+        </label>
+
+        <label>
+          <span>유형</span>
+          <select id="categoryFilter"></select>
+        </label>
+
+        <label>
+          <span>정렬</span>
+          <select id="sortSelect">
+            <option value="title">이름순</option>
+            <option value="era">시대순</option>
+            <option value="date">연대순</option>
+            <option value="images">이미지 많은 순</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="chart-panel" aria-label="시대별 수량">
+        <h2>시대별 자료</h2>
+        <div id="eraChart" class="bar-chart"></div>
+      </section>
+    </aside>
+
+    <section class="results-panel">
+      <div class="toolbar">
+        <p id="resultCount">0건</p>
+        <div class="view-toggle" role="group" aria-label="보기 전환">
+          <button id="gridView" type="button" class="active">격자</button>
+          <button id="listView" type="button">목록</button>
+        </div>
+      </div>
+      <div id="records" class="record-grid" aria-live="polite"></div>
+    </section>
+
+    <aside class="detail-panel" id="detailPanel">
+      <div class="empty-detail">
+        <strong>자료를 선택하세요</strong>
+        <span>왼쪽 목록에서 금석문을 고르면 메타데이터와 본문 절을 볼 수 있습니다.</span>
+      </div>
+    </aside>
+  </main>
+
+  <script src="data/gskh-data.js"></script>
+  <script src="data/hanja-readings.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
